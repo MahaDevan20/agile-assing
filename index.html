@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduConnect - Quality Education for All</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #f5f7fa;
+      }
+
+      /* Navigation */
+      nav {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.3s;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.8;
+      }
+
+      .btn {
+        padding: 0.5rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-primary {
+        background: white;
+        color: #667eea;
+        font-weight: bold;
+      }
+
+      .btn-secondary {
+        background: #667eea;
+        color: white;
+        border: 2px solid white;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Search Section */
+      .search-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin: -3rem auto 3rem;
+        max-width: 900px;
+        position: relative;
+        z-index: 100;
+      }
+
+      .search-box {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .search-input {
+        flex: 1;
+        min-width: 200px;
+        padding: 0.75rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      /* Section Titles */
+      .section-title {
+        text-align: center;
+        font-size: 2rem;
+        margin: 3rem 0 2rem;
+        color: #2c3e50;
+      }
+
+      /* Tutor Cards */
+      .tutors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .tutor-card {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .tutor-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .tutor-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .tutor-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .tutor-info h3 {
+        color: #2c3e50;
+        margin-bottom: 0.25rem;
+      }
+
+      .tutor-rating {
+        color: #f39c12;
+        font-size: 0.9rem;
+      }
+
+      .tutor-subjects {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .subject-tag {
+        background: #e8f4f8;
+        color: #2980b9;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+      }
+
+      .tutor-availability {
+        color: #27ae60;
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
+      }
+
+      .tutor-card .btn {
+        width: 100%;
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      /* Features Section */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-card h3 {
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Resources Section */
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .resource-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .resource-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .resource-thumbnail {
+        height: 150px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+      }
+
+      .resource-content {
+        padding: 1.5rem;
+      }
+
+      .resource-content h3 {
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+      }
+
+      .resource-type {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background: #2c3e50;
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        margin-top: 4rem;
+      }
+
+      /* Stats Section */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #667eea;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: #7f8c8d;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <div class="logo">🎓 EduConnect</div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#tutors">Find Tutors</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+        <a href="#login" class="btn btn-primary">Login / Sign Up</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Quality Education for All</h1>
+        <p>
+          Connecting students with volunteer tutors and free educational
+          resources to bridge the learning gap
+        </p>
+        <a href="#tutors" class="btn btn-secondary">Find a Tutor</a>
+      </div>
+    </section>
+
+    <!-- Search Section -->
+    <div class="container">
+      <div class="search-section">
+        <h2 style="margin-bottom: 1rem; color: #2c3e50">
+          Find Your Perfect Tutor
+        </h2>
+        <div class="search-box">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search by subject (e.g., Mathematics, Science)"
+          />
+          <select class="search-input" style="flex: 0 0 150px">
+            <option>All Levels</option>
+            <option>Primary</option>
+            <option>Secondary</option>
+            <option>High School</option>
+          </select>
+          <button class="btn btn-primary" style="flex: 0 0 auto">Search</button>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Active Tutors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5,000+</div>
+          <div class="stat-label">Students Helped</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10,000+</div>
+          <div class="stat-label">Study Resources</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Satisfaction Rate</div>
+        </div>
+      </div>
+
+      <!-- Available Tutors Section -->
+      <h2 class="section-title" id="tutors">Available Tutors</h2>
+      <div class="tutors-grid">
+        <div class="tutor-card">
+          <div class="tutor-header">
+            <div class="tutor-avatar">SA</div>
+            <div class="tutor-info">
+              <h3>Sarah Ahmed</h3>
+              <div class="tutor-rating">⭐ 4.9 (127 reviews)</div>
+            </div>
+          </div>
+          <div class="tutor-subjects">
+            <span class="subject-tag">Mathematics</span>
+            <span class="subject-tag">Physics</span>
+            <span class="subject-tag">Calculus</span>
+          </div>
+          <div class="tutor-availability">✓ Available today</div>
+          <p style="color: #7f8c8d; font-size: 0.9rem; margin: 0.5rem 0">
+            Experienced mathematics teacher with 5+ years of experience helping
+            students excel.
+          </p>
+          <a href="#book" class="btn btn-primary">Book Session</a>
+        </div>
+
+        <div class="tutor-card">
+          <div class="tutor-header">
+            <div class="tutor-avatar">MK</div>
+            <div class="tutor-info">
+              <h3>Muhammad Khan</h3>
+              <div class="tutor-rating">⭐ 4.8 (89 reviews)</div>
+            </div>
+          </div>
+          <div class="tutor-subjects">
+            <span class="subject-tag">English</span>
+            <span class="subject-tag">Literature</span>
+            <span class="subject-tag">Writing</span>
+          </div>
+          <div class="tutor-availability">✓ Available tomorrow</div>
+          <p style="color: #7f8c8d; font-size: 0.9rem; margin: 0.5rem 0">
+            Professional English tutor specializing in essay writing and
+            language skills.
+          </p>
+          <a href="#book" class="btn btn-primary">Book Session</a>
+        </div>
+
+        <div class="tutor-card">
+          <div class="tutor-header">
+            <div class="tutor-avatar">AK</div>
+            <div class="tutor-info">
+              <h3>Ayesha Khan</h3>
+              <div class="tutor-rating">⭐ 5.0 (156 reviews)</div>
+            </div>
+          </div>
+          <div class="tutor-subjects">
+            <span class="subject-tag">Chemistry</span>
+            <span class="subject-tag">Biology</span>
+            <span class="subject-tag">Science</span>
+          </div>
+          <div class="tutor-availability">✓ Available today</div>
+          <p style="color: #7f8c8d; font-size: 0.9rem; margin: 0.5rem 0">
+            Science enthusiast with expertise in chemistry and biology for all
+            levels.
+          </p>
+          <a href="#book" class="btn btn-primary">Book Session</a>
+        </div>
+
+        <div class="tutor-card">
+          <div class="tutor-header">
+            <div class="tutor-avatar">HS</div>
+            <div class="tutor-info">
+              <h3>Hassan Shah</h3>
+              <div class="tutor-rating">⭐ 4.7 (203 reviews)</div>
+            </div>
+          </div>
+          <div class="tutor-subjects">
+            <span class="subject-tag">Computer Science</span>
+            <span class="subject-tag">Programming</span>
+            <span class="subject-tag">Web Development</span>
+          </div>
+          <div class="tutor-availability">✓ Available this week</div>
+          <p style="color: #7f8c8d; font-size: 0.9rem; margin: 0.5rem 0">
+            Software engineer teaching programming and computer science
+            fundamentals.
+          </p>
+          <a href="#book" class="btn btn-primary">Book Session</a>
+        </div>
+
+        <div class="tutor-card">
+          <div class="tutor-header">
+            <div class="tutor-avatar">FM</div>
+            <div class="tutor-info">
+              <h3>Fatima Malik</h3>
+              <div class="tutor-rating">⭐ 4.9 (94 reviews)</div>
+            </div>
+          </div>
+          <div class="tutor-subjects">
+            <span class="subject-tag">History</span>
+            <span class="subject-tag">Social Studies</span>
+            <span class="subject-tag">Geography</span>
+          </div>
+          <div class="tutor-availability">✓ Available today</div>
+          <p style="color: #7f8c8d; font-size: 0.9rem; margin: 0.5rem 0">
+            Passionate history teacher making the past come alive for students.
+          </p>
+          <a href="#book" class="btn btn-primary">Book Session</a>
+        </div>
+
+        <div class="tutor-card">
+          <div class="tutor-header">
+            <div class="tutor-avatar">AR</div>
+            <div class="tutor-info">
+              <h3>Ali Raza</h3>
+              <div class="tutor-rating">⭐ 4.8 (112 reviews)</div>
+            </div>
+          </div>
+          <div class="tutor-subjects">
+            <span class="subject-tag">Economics</span>
+            <span class="subject-tag">Business Studies</span>
+            <span class="subject-tag">Accounting</span>
+          </div>
+          <div class="tutor-availability">✓ Available tomorrow</div>
+          <p style="color: #7f8c8d; font-size: 0.9rem; margin: 0.5rem 0">
+            Business professional teaching economics and accounting concepts.
+          </p>
+          <a href="#book" class="btn btn-primary">Book Session</a>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <h2 class="section-title">Why Choose EduConnect?</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🎓</div>
+          <h3>Free Access</h3>
+          <p>
+            All tutoring sessions and resources are completely free for
+            students.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Qualified Tutors</h3>
+          <p>
+            All our tutors are verified and qualified educators passionate about
+            teaching.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>Rich Resources</h3>
+          <p>
+            Access thousands of study materials, videos, and practice quizzes.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Progress Tracking</h3>
+          <p>Monitor your learning progress and achievements over time.</p>
+        </div>
+      </div>
+
+      <!-- Resources Section -->
+      <h2 class="section-title" id="resources">Educational Resources</h2>
+      <div class="resources-grid">
+        <div class="resource-card">
+          <div class="resource-thumbnail">📹</div>
+          <div class="resource-content">
+            <h3>Video Lessons</h3>
+            <div class="resource-type">500+ Video Tutorials</div>
+            <p style="color: #7f8c8d; font-size: 0.9rem">
+              Interactive video lessons covering all major subjects and topics.
+            </p>
+            <a href="#videos" class="btn btn-primary" style="margin-top: 1rem"
+              >Explore Videos</a
+            >
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-thumbnail">📝</div>
+          <div class="resource-content">
+            <h3>Practice Quizzes</h3>
+            <div class="resource-type">1,000+ Quizzes</div>
+            <p style="color: #7f8c8d; font-size: 0.9rem">
+              Test your knowledge with interactive quizzes and get instant
+              feedback.
+            </p>
+            <a href="#quizzes" class="btn btn-primary" style="margin-top: 1rem"
+              >Take Quiz</a
+            >
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-thumbnail">📖</div>
+          <div class="resource-content">
+            <h3>Study Guides</h3>
+            <div class="resource-type">300+ Study Materials</div>
+            <p style="color: #7f8c8d; font-size: 0.9rem">
+              Comprehensive study guides and notes for exam preparation.
+            </p>
+            <a href="#guides" class="btn btn-primary" style="margin-top: 1rem"
+              >View Guides</a
+            >
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-thumbnail">📊</div>
+          <div class="resource-content">
+            <h3>Progress Reports</h3>
+            <div class="resource-type">Track Your Growth</div>
+            <p style="color: #7f8c8d; font-size: 0.9rem">
+              Monitor your learning journey with detailed progress analytics.
+            </p>
+            <a href="#progress" class="btn btn-primary" style="margin-top: 1rem"
+              >View Progress</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 EduConnect. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8">
+          Supporting SDG 4: Quality Education - Making learning accessible for
+          all.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
